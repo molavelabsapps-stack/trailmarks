@@ -104,12 +104,13 @@ const curriculumData = {
         icon: "🚀",
         age: "Ages 6-7",
         subjects: [
-            { id: "math", name: "Math", icon: "🔢", description: "Place Value" },
-            { id: "reading", name: "Reading & Language", icon: "📚", description: "Reading Stories" },
-            { id: "science", name: "Science", icon: "🔬", description: "Weather & Seasons" },
-            { id: "social", name: "Social Studies", icon: "🌍", description: "Holidays & Traditions" }
+            { id: "math", name: "Math", icon: "🔢", description: "Place Value, Addition, Time" },
+            { id: "reading", name: "Reading & Language", icon: "📚", description: "Phonics, Stories, Writing" },
+            { id: "science", name: "Science", icon: "🔬", description: "Light, Sound, Weather, Plants" },
+            { id: "social", name: "Social Studies", icon: "🌍", description: "Maps, Communities, History" }
         ],
         lessons: [
+            // MATHEMATICS
             {
                 id: "g1-math-1",
                 title: "Place Value: Tens and Ones",
@@ -118,33 +119,401 @@ const curriculumData = {
                 difficulty: "Intermediate",
                 energy: 200,
                 thumbnail: "📊",
-                videoTranscript: "Numbers have places! In 23, the 2 is in the tens place and 3 is in the ones place.",
+                videoTranscript: "Numbers have places! In 23, the 2 is in the tens place (2 tens = 20) and 3 is in the ones place. So 23 = 20 + 3!",
                 practiceProblem: {
-                    question: "In the number 47, which digit is in the tens place?",
+                    question: "In the number 47, how many tens are there?",
                     type: "choice",
-                    options: ["4", "7", "47"],
-                    correct: "4",
-                    hint: "The tens place is the first digit from the left."
+                    options: ["4 tens", "7 tens", "47 tens"],
+                    correct: "4 tens",
+                    hint: "The first digit from the left tells you the tens."
                 },
-                resources: ["Place Value Chart", "Base-10 Blocks Activity"]
+                resources: ["Place Value Chart", "Base-10 Blocks Activity"],
+                standards: ["CCSS.MATH.CONTENT.1.NBT.B.2"]
             },
             {
+                id: "g1-math-2",
+                title: "Skip Counting by 2s, 5s, and 10s",
+                subject: "math",
+                duration: "6:30",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "2️⃣5️⃣🔟",
+                videoTranscript: "Skip counting helps us count faster! By 2s: 2, 4, 6, 8, 10... By 5s: 5, 10, 15, 20... By 10s: 10, 20, 30, 40...",
+                practiceProblem: {
+                    question: "What comes next? 10, 20, 30, ___",
+                    type: "choice",
+                    options: ["35", "40", "50"],
+                    correct: "40",
+                    hint: "We're counting by 10s. Add 10 to 30."
+                },
+                resources: ["Hundreds Chart", "Skip Counting Songs"],
+                standards: ["CCSS.MATH.CONTENT.1.NBT.A.1"]
+            },
+            {
+                id: "g1-math-3",
+                title: "Addition Within 20",
+                subject: "math",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "➕",
+                videoTranscript: "Let's add numbers up to 20! 8 + 5 = ? We can count on: 8... 9, 10, 11, 12, 13. So 8 + 5 = 13!",
+                practiceProblem: {
+                    question: "What is 9 + 7?",
+                    type: "input",
+                    correct: "16",
+                    hint: "Start at 9 and count up 7 more."
+                },
+                resources: ["Addition Facts Worksheet", "Number Line Practice"],
+                standards: ["CCSS.MATH.CONTENT.1.OA.C.6"]
+            },
+            {
+                id: "g1-math-4",
+                title: "Subtraction Within 20",
+                subject: "math",
+                duration: "7:30",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "➖",
+                videoTranscript: "Subtraction means taking away! 15 - 7 = ? Start at 15 and count back 7: 14, 13, 12, 11, 10, 9, 8. Answer is 8!",
+                practiceProblem: {
+                    question: "What is 14 - 6?",
+                    type: "choice",
+                    options: ["7", "8", "9"],
+                    correct: "8",
+                    hint: "Start at 14 and count back 6."
+                },
+                resources: ["Subtraction Facts Practice", "Counting Back Strategy Guide"],
+                standards: ["CCSS.MATH.CONTENT.1.OA.C.6"]
+            },
+            {
+                id: "g1-math-5",
+                title: "Telling Time to the Hour and Half-Hour",
+                subject: "math",
+                duration: "9:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "⏰",
+                videoTranscript: "The short hand shows the hour, the long hand shows minutes. When the long hand points to 12, it's o'clock. When it points to 6, it's half past!",
+                practiceProblem: {
+                    question: "If the short hand is on 3 and the long hand is on 6, what time is it?",
+                    type: "choice",
+                    options: ["3:00", "3:30", "6:00"],
+                    correct: "3:30",
+                    hint: "Long hand on 6 means half past the hour."
+                },
+                resources: ["Practice Clock", "Time Worksheet"],
+                standards: ["CCSS.MATH.CONTENT.1.MD.B.3"]
+            },
+            {
+                id: "g1-math-6",
+                title: "Understanding Fractions: Halves and Fourths",
+                subject: "math",
+                duration: "7:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "🍕½",
+                videoTranscript: "When we split something into 2 equal parts, each part is a half. When we split into 4 equal parts, each is a fourth or quarter!",
+                practiceProblem: {
+                    question: "If you cut a pizza into 4 equal slices, each slice is a ___?",
+                    type: "choice",
+                    options: ["half", "fourth", "whole"],
+                    correct: "fourth",
+                    hint: "4 equal parts makes fourths."
+                },
+                resources: ["Fraction Circles", "Pizza Fraction Activity"],
+                standards: ["CCSS.MATH.CONTENT.1.G.A.3"]
+            },
+            {
+                id: "g1-math-7",
+                title: "2D and 3D Shapes",
+                subject: "math",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "🔺🔵📦",
+                videoTranscript: "2D shapes are flat: circles, triangles, squares. 3D shapes have depth: spheres, cubes, cylinders. A cube has 6 square faces!",
+                practiceProblem: {
+                    question: "Which shape is a 3D shape?",
+                    type: "choice",
+                    options: ["Circle", "Cube", "Triangle"],
+                    correct: "Cube",
+                    hint: "3D shapes are not flat - you can hold them!"
+                },
+                resources: ["Shape Sorter Game", "3D Shape Nets"],
+                standards: ["CCSS.MATH.CONTENT.1.G.A.1", "CCSS.MATH.CONTENT.1.G.A.2"]
+            },
+            
+            // READING & LANGUAGE ARTS
+            {
                 id: "g1-reading-1",
-                title: "Reading Comprehension: Main Idea",
+                title: "Phonics: Blends and Digraphs",
                 subject: "reading",
                 duration: "8:00",
                 difficulty: "Intermediate",
                 energy: 200,
-                thumbnail: "📚💡",
-                videoTranscript: "The main idea is what the story is mostly about. Let's find the main idea together!",
+                thumbnail: "🔤bl",
+                videoTranscript: "Blends are two consonants together that keep their sounds: bl, st, tr. Digraphs make one new sound: sh, ch, th, wh!",
                 practiceProblem: {
-                    question: "What is this story mainly about? (Story about a dog finding a home)",
+                    question: "Which word starts with the 'sh' sound?",
                     type: "choice",
-                    options: ["Dogs eating", "A dog finding a home", "Different pets"],
-                    correct: "A dog finding a home",
-                    hint: "Think about what happened most in the story."
+                    options: ["ship", "sip", "tip"],
+                    correct: "ship",
+                    hint: "'sh' makes a quiet sound like 'shhh'."
                 },
-                resources: ["Reading Comprehension Workbook", "Story Map Template"]
+                resources: ["Phonics Flashcards", "Blends Practice Book"],
+                standards: ["CCSS.ELA-LITERACY.RF.1.3"]
+            },
+            {
+                id: "g1-reading-2",
+                title: "Story Elements: Characters, Setting, Plot",
+                subject: "reading",
+                duration: "9:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "📖👤🏠",
+                videoTranscript: "Every story has characters (who), setting (where and when), and plot (what happens). Let's identify these in our story!",
+                practiceProblem: {
+                    question: "In 'Little Red Riding Hood went to Grandma's house in the forest,' what is the setting?",
+                    type: "choice",
+                    options: ["Little Red", "Grandma's house in the forest", "Bringing food"],
+                    correct: "Grandma's house in the forest",
+                    hint: "Setting tells WHERE the story happens."
+                },
+                resources: ["Story Map Template", "Character Analysis Worksheet"],
+                standards: ["CCSS.ELA-LITERACY.RL.1.3"]
+            },
+            {
+                id: "g1-reading-3",
+                title: "Main Idea and Details",
+                subject: "reading",
+                duration: "8:30",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "💡📋",
+                videoTranscript: "The main idea is what the text is mostly about. Details tell us more about the main idea. Think: What is this MOSTLY about?",
+                practiceProblem: {
+                    question: "A text talks about how bees make honey, where they live, and what they eat. What's the main idea?",
+                    type: "choice",
+                    options: ["How to make honey", "All about bees", "Where flowers grow"],
+                    correct: "All about bees",
+                    hint: "All the details are about bees!"
+                },
+                resources: ["Main Idea Graphic Organizer", "Reading Passages"],
+                standards: ["CCSS.ELA-LITERACY.RI.1.2"]
+            },
+            {
+                id: "g1-reading-4",
+                title: "Writing: Opinion Pieces",
+                subject: "reading",
+                duration: "10:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "✏️💭",
+                videoTranscript: "Opinion writing tells what you think! Start with your opinion, give reasons, and end with a conclusion. Example: 'I think recess is important because...'",
+                practiceProblem: {
+                    question: "Which sentence is an opinion?",
+                    type: "choice",
+                    options: ["Dogs have four legs.", "Dogs are the best pets.", "Dogs eat food."],
+                    correct: "Dogs are the best pets.",
+                    hint: "An opinion is what someone thinks or feels, not a fact."
+                },
+                resources: ["Opinion Writing Template", "Reasons Brainstorm Sheet"],
+                standards: ["CCSS.ELA-LITERACY.W.1.1"]
+            },
+            {
+                id: "g1-reading-5",
+                title: "Writing: Narrative Stories",
+                subject: "reading",
+                duration: "10:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "📝📚",
+                videoTranscript: "Narrative writing tells a story! Include characters, setting, beginning, middle, end, and use sequence words: first, next, then, finally.",
+                practiceProblem: {
+                    question: "Which word helps show sequence in a story?",
+                    type: "choice",
+                    options: ["big", "then", "blue"],
+                    correct: "then",
+                    hint: "Sequence words tell the order of events."
+                },
+                resources: ["Story Sequence Cards", "Narrative Writing Checklist"],
+                standards: ["CCSS.ELA-LITERACY.W.1.3"]
+            },
+            
+            // SCIENCE
+            {
+                id: "g1-science-1",
+                title: "Light and Vision",
+                subject: "science",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "💡👁️",
+                videoTranscript: "We see things when light bounces off them and enters our eyes! Light travels in straight lines. Without light, we can't see!",
+                practiceProblem: {
+                    question: "Why can't we see in a dark room?",
+                    type: "choice",
+                    options: ["Our eyes are closed", "There's no light to bounce off objects", "It's nighttime"],
+                    correct: "There's no light to bounce off objects",
+                    hint: "Remember: we need light to see!"
+                },
+                resources: ["Light Exploration Kit", "Shadow Investigation Guide"],
+                standards: ["NGSS 1-PS4-2"]
+            },
+            {
+                id: "g1-science-2",
+                title: "Sound and Vibration",
+                subject: "science",
+                duration: "7:30",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "🔊🎵",
+                videoTranscript: "Sound is made when things vibrate! Touch your throat when you hum - feel the vibration? Faster vibrations make higher sounds!",
+                practiceProblem: {
+                    question: "What makes sound?",
+                    type: "choice",
+                    options: ["Light", "Vibrations", "Heat"],
+                    correct: "Vibrations",
+                    hint: "Try humming and touching your throat!"
+                },
+                resources: ["Sound Makers Activity", "Vibration Detection Experiment"],
+                standards: ["NGSS 1-PS4-1"]
+            },
+            {
+                id: "g1-science-3",
+                title: "Plant Structures and Functions",
+                subject: "science",
+                duration: "9:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "🌱🌿",
+                videoTranscript: "Plants have special parts! Roots absorb water, stems support the plant, leaves make food using sunlight, flowers make seeds!",
+                practiceProblem: {
+                    question: "Which part of the plant absorbs water from the soil?",
+                    type: "choice",
+                    options: ["Leaves", "Stem", "Roots"],
+                    correct: "Roots",
+                    hint: "These parts are usually underground."
+                },
+                resources: ["Plant Parts Diagram", "Grow Your Own Plant Kit"],
+                standards: ["NGSS 1-LS1-1"]
+            },
+            {
+                id: "g1-science-4",
+                title: "Animal Survival Needs",
+                subject: "science",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "🐾🦴",
+                videoTranscript: "All animals need food, water, air, and shelter to survive! Different animals have different body parts that help them get what they need.",
+                practiceProblem: {
+                    question: "Which is NOT something all animals need?",
+                    type: "choice",
+                    options: ["Food", "Water", "Toys"],
+                    correct: "Toys",
+                    hint: "Think about what keeps animals alive."
+                },
+                resources: ["Animal Needs Poster", "Habitat Matching Game"],
+                standards: ["NGSS 1-LS1-2"]
+            },
+            {
+                id: "g1-science-5",
+                title: "Weather Patterns and Seasons",
+                subject: "science",
+                duration: "9:00",
+                difficulty: "Intermediate",
+                energy: 250,
+                thumbnail: "🌤️❄️",
+                videoTranscript: "Weather changes daily, but seasons follow patterns! Spring: warm and rainy. Summer: hot. Fall: cool and windy. Winter: cold, maybe snow!",
+                practiceProblem: {
+                    question: "In which season do leaves usually change color and fall off trees?",
+                    type: "choice",
+                    options: ["Spring", "Summer", "Fall"],
+                    correct: "Fall",
+                    hint: "Also called autumn!"
+                },
+                resources: ["Weather Journal", "Season Wheel Craft"],
+                standards: ["NGSS 1-ESS1-2"]
+            },
+            
+            // SOCIAL STUDIES
+            {
+                id: "g1-social-1",
+                title: "Map Skills: Compass Rose and Legend",
+                subject: "social",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "🗺️🧭",
+                videoTranscript: "Maps help us find places! The compass rose shows directions: North, South, East, West. The legend explains the symbols on the map!",
+                practiceProblem: {
+                    question: "What does a compass rose show?",
+                    type: "choice",
+                    options: ["Distance", "Directions", "Population"],
+                    correct: "Directions",
+                    hint: "N, S, E, W are directions!"
+                },
+                resources: ["Classroom Map Activity", "Treasure Hunt with Maps"],
+                standards: ["NCSS Theme 3: People, Places, and Environments"]
+            },
+            {
+                id: "g1-social-2",
+                title: "Community Helpers",
+                subject: "social",
+                duration: "7:00",
+                difficulty: "Beginner",
+                energy: 150,
+                thumbnail: "👨‍⚕️👮‍♀️",
+                videoTranscript: "Community helpers work to keep our community safe and healthy! Doctors help sick people, firefighters put out fires, teachers educate children!",
+                practiceProblem: {
+                    question: "Who would you call if there's a fire?",
+                    type: "choice",
+                    options: ["Doctor", "Firefighter", "Teacher"],
+                    correct: "Firefighter",
+                    hint: "They drive big red trucks!"
+                },
+                resources: ["Community Helpers Matching Game", "Thank You Card Activity"],
+                standards: ["NCSS Theme 5: Individuals, Groups, and Institutions"]
+            },
+            {
+                id: "g1-social-3",
+                title: "Rights and Responsibilities",
+                subject: "social",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "⚖️✅",
+                videoTranscript: "Rights are things we're allowed to do. Responsibilities are things we should do. With rights come responsibilities! Example: You have the right to learn, responsibility to listen.",
+                practiceProblem: {
+                    question: "Which is a responsibility at school?",
+                    type: "choice",
+                    options: ["Playing all day", "Following rules", "Ignoring the teacher"],
+                    correct: "Following rules",
+                    hint: "Responsibilities are things we SHOULD do."
+                },
+                resources: ["Classroom Rules Chart", "Rights vs Responsibilities Sort"],
+                standards: ["NCSS Theme 6: Power, Authority, and Governance"]
+            },
+            {
+                id: "g1-social-4",
+                title: "Timelines: Past, Present, Future",
+                subject: "social",
+                duration: "7:30",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "📅⏳",
+                videoTranscript: "A timeline shows when events happened! Past is before now, present is now, future is after now. We read timelines from left to right!",
+                practiceProblem: {
+                    question: "On a timeline, which comes first: your birth or today?",
+                    type: "choice",
+                    options: ["Your birth", "Today", "They're the same"],
+                    correct: "Your birth",
+                    hint: "You were born before today!"
+                },
+                resources: ["Personal Timeline Template", "Historical Events Timeline"],
+                standards: ["NCSS Theme 5: Time, Continuity, and Change"]
             }
         ]
     }
