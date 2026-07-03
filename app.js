@@ -294,8 +294,10 @@ function initModals() {
     if (continueLearningBtn) {
         continueLearningBtn.addEventListener('click', () => {
             completionModal.hidden = true;
-            // In a real app, this would navigate to the next lesson
-            window.location.hash = '#next-lesson';
+            // Reset the lesson state for demo purposes
+            resetLessonState();
+            // Show a friendly message
+            alert('🎉 Great progress! In the full version, this would take you to the next lesson in your learning path.');
         });
     }
 
@@ -511,8 +513,51 @@ window.KhanAcademyModern = {
     updateProgress,
     addEnergyPoints,
     showCompletionModal,
-    openHintModal
+    openHintModal,
+    resetLessonState
 };
+
+/**
+ * Reset lesson state for demo purposes
+ */
+function resetLessonState() {
+    // Reset video player
+    const playButton = document.getElementById('playVideo');
+    const timelineProgress = document.querySelector('.timeline-progress');
+    
+    if (playButton) {
+        playButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+        `;
+    }
+    
+    if (timelineProgress) {
+        timelineProgress.style.width = '0%';
+    }
+    
+    // Reset practice problem
+    const answerInput = document.getElementById('answerInput');
+    const feedbackArea = document.getElementById('feedbackArea');
+    const checkBtn = document.getElementById('checkAnswer');
+    
+    if (answerInput) {
+        answerInput.value = '';
+        answerInput.disabled = false;
+    }
+    
+    if (feedbackArea) {
+        feedbackArea.hidden = true;
+        feedbackArea.className = 'feedback-area';
+    }
+    
+    if (checkBtn) {
+        checkBtn.disabled = false;
+    }
+    
+    console.log('Lesson state reset for demo');
+}
 
 console.log('🎓 Khan Academy Modern - Learning Platform Initialized');
 console.log('Following international best practices for lesson delivery:');
