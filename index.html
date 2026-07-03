@@ -1407,29 +1407,66 @@ function render(){
 function renderHome(){
   const wrap=el(`<div>
     <section class="hero">
-      <h1>Pick a course.<br>Learn something great.</h1>
-      <p>Four full courses with real lessons, unit tests, and milestone exams along the way.</p>
+      <h1>Early Learning Platform</h1>
+      <p>Comprehensive curriculum for Pre-K, Kindergarten, and 1st Grade following international pedagogical standards.</p>
     </section>
-    <div class="course-grid"></div>
+    <div id="gradeSelection" class="grade-selection"></div>
+    <div class="course-grid" style="display:none;"></div>
   </div>`);
   const grid=wrap.querySelector('.course-grid');
-  COURSE_ORDER.forEach(cid=>{
-    const c=COURSES[cid];
-    const accent=accentOf(cid);
-    const pct=Math.round(100*totalStars(cid)/maxStars(cid));
-    const label = cid==='math'?'Math · Grade 1' : cid==='reading'?'Reading · Grade 2' : cid==='math3'?'Math · Grade 3' : 'Math · Grade 4';
-    const card=el(`<div class="course-card ${accent}">
-      <span class="course-badge">${label}</span>
-      <div class="course-illustration">${courseIllustration(cid)}</div>
-      <h2>${c.name}</h2>
-      <p class="desc">${c.tagline} — 5 units, ${c.units.reduce((s,u)=>s+u.lessons.length,0)} lessons, plus unit tests and milestone exams.</p>
-      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
-      <div class="progress-label">${totalStars(cid)} / ${maxStars(cid)} stars</div>
-      <div class="btn-row"><button class="btn btn-${accent}">${totalStars(cid)>0?'Continue':'Start course'}</button></div>
-    </div>`);
-    card.querySelector('button').addEventListener('click',()=>go({name:'course',courseId:cid}));
-    grid.appendChild(card);
-  });
+  const gradeContainer = wrap.querySelector('#gradeSelection');
+  
+  // Create GRADES array from curriculumData if not exists
+  if (typeof GRADES === 'undefined') {
+    window.GRADES = [
+      { id: 'prek', name: 'Pre-K', icon: '🌟', ageRange: 'Ages 3-4', description: 'Colors, shapes, counting to 10, letters & sounds', color: '#FFC53D' },
+      { id: 'kindergarten', name: 'Kindergarten', icon: '🎈', ageRange: 'Ages 5-6', description: 'Counting to 100, simple words, plants & animals', color: '#E8557A' },
+      { id: 'grade1', name: '1st Grade', icon: '🚀', ageRange: 'Ages 6-7', description: 'Place value, reading comprehension, light & sound', color: '#3F7FFC' }
+    ];
+  }
+  
+  // Render grade selection cards
+  const gradesHtml = `
+    <div class="grades-grid">
+      ${GRADES.map((grade, index) => `
+        <div class="grade-card" data-grade="${grade.id}" style="--accent: ${grade.color}">
+          <div class="grade-icon">${grade.icon}</div>
+          <h3>${grade.name}</h3>
+          <p class="grade-age">${grade.ageRange}</p>
+          <p class="grade-desc">${grade.description}</p>
+          <button class="btn-primary" onclick="selectGrade('${grade.id}')">Start Learning</button>
+        </div>
+      `).join('')}
+    </div>
+    
+    <section class="features-section">
+      <h2>Why Trailmarks Early Learning?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h4>Scaffolded Learning</h4>
+          <p>Progressive difficulty from concrete to abstract concepts</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h4>Multimodal Instruction</h4>
+          <p>Visual, auditory, and kinesthetic engagement</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h4>Formative Assessment</h4>
+          <p>Continuous feedback and progress tracking</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h4>Real-World Connections</h4>
+          <p>Practical applications and everyday examples</p>
+        </div>
+      </div>
+    </section>
+  `;
+  
+  gradeContainer.innerHTML = gradesHtml;
   return wrap;
 }
 
