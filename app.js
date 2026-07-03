@@ -1,523 +1,581 @@
-// Modern Khan Academy - Interactive Learning Experience
-// Following international best practices for lesson delivery
+// Khan Academy Early Learning Platform - Interactive Learning Experience
+// Comprehensive curriculum for Pre-K, Kindergarten, and 1st Grade
+
+const curriculumData = {
+    prek: {
+        name: "Pre-K",
+        icon: "🌟",
+        age: "Ages 3-4",
+        subjects: [
+            { id: "math", name: "Math", icon: "🔢", description: "Counting and Numbers" },
+            { id: "reading", name: "Reading & Language", icon: "📚", description: "Letters A-Z" },
+            { id: "science", name: "Science", icon: "🔬", description: "Five Senses" },
+            { id: "social", name: "Social Studies", icon: "🌍", description: "Family & Community" }
+        ],
+        lessons: [
+            {
+                id: "prek-math-1",
+                title: "Counting to 5",
+                subject: "math",
+                duration: "3:20",
+                difficulty: "Beginner",
+                energy: 100,
+                thumbnail: "🍎🍊🍌",
+                videoTranscript: "Let's learn to count! One... Two... Three... Four... Five! Great job!",
+                practiceProblem: {
+                    question: "How many apples do you see?",
+                    type: "choice",
+                    options: ["3", "4", "5"],
+                    correct: "5",
+                    hint: "Count each apple slowly: one, two, three..."
+                },
+                resources: ["Counting Chart 1-5", "Number Tracing Worksheet"]
+            },
+            {
+                id: "prek-reading-1",
+                title: "Letter A is for Apple",
+                subject: "reading",
+                duration: "4:15",
+                difficulty: "Beginner",
+                energy: 100,
+                thumbnail: "🅰️🍎",
+                videoTranscript: "The letter A makes the sound 'ah'. A is for Apple! Can you say 'Ahh'?",
+                practiceProblem: {
+                    question: "Which picture starts with A?",
+                    type: "choice",
+                    options: ["🍎 Apple", "🐶 Dog", "🚗 Car"],
+                    correct: "🍎 Apple",
+                    hint: "Apple starts with the letter A!"
+                },
+                resources: ["Letter A Flashcard", "Apple Coloring Page"]
+            }
+        ]
+    },
+    kindergarten: {
+        name: "Kindergarten",
+        icon: "🎈",
+        age: "Ages 5-6",
+        subjects: [
+            { id: "math", name: "Math", icon: "🔢", description: "Counting to 100" },
+            { id: "reading", name: "Reading & Language", icon: "📚", description: "Simple Words" },
+            { id: "science", name: "Science", icon: "🔬", description: "Plants & Animals" },
+            { id: "social", name: "Social Studies", icon: "🌍", description: "Maps & Communities" }
+        ],
+        lessons: [
+            {
+                id: "k-math-1",
+                title: "Counting to 20",
+                subject: "math",
+                duration: "5:30",
+                difficulty: "Beginner",
+                energy: 150,
+                thumbnail: "1️⃣2️⃣3️⃣",
+                videoTranscript: "Let's count together from 1 to 20! Ready? 1, 2, 3, 4, 5...",
+                practiceProblem: {
+                    question: "What number comes after 15?",
+                    type: "input",
+                    correct: "16",
+                    hint: "Count forward: 15, then what?"
+                },
+                resources: ["Number Line 1-20", "Counting Practice Sheet"]
+            },
+            {
+                id: "k-reading-1",
+                title: "Sight Words: the, and, is",
+                subject: "reading",
+                duration: "6:00",
+                difficulty: "Beginner",
+                energy: 150,
+                thumbnail: "📖",
+                videoTranscript: "Today we'll learn three important words: THE, AND, IS. These are sight words!",
+                practiceProblem: {
+                    question: "Fill in the blank: The cat ___ sleeping.",
+                    type: "choice",
+                    options: ["the", "and", "is"],
+                    correct: "is",
+                    hint: "Read the sentence: 'The cat ____ sleeping.'"
+                },
+                resources: ["Sight Words Flashcards", "Reading Practice Book"]
+            }
+        ]
+    },
+    grade1: {
+        name: "1st Grade",
+        icon: "🚀",
+        age: "Ages 6-7",
+        subjects: [
+            { id: "math", name: "Math", icon: "🔢", description: "Place Value" },
+            { id: "reading", name: "Reading & Language", icon: "📚", description: "Reading Stories" },
+            { id: "science", name: "Science", icon: "🔬", description: "Weather & Seasons" },
+            { id: "social", name: "Social Studies", icon: "🌍", description: "Holidays & Traditions" }
+        ],
+        lessons: [
+            {
+                id: "g1-math-1",
+                title: "Place Value: Tens and Ones",
+                subject: "math",
+                duration: "7:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "📊",
+                videoTranscript: "Numbers have places! In 23, the 2 is in the tens place and 3 is in the ones place.",
+                practiceProblem: {
+                    question: "In the number 47, which digit is in the tens place?",
+                    type: "choice",
+                    options: ["4", "7", "47"],
+                    correct: "4",
+                    hint: "The tens place is the first digit from the left."
+                },
+                resources: ["Place Value Chart", "Base-10 Blocks Activity"]
+            },
+            {
+                id: "g1-reading-1",
+                title: "Reading Comprehension: Main Idea",
+                subject: "reading",
+                duration: "8:00",
+                difficulty: "Intermediate",
+                energy: 200,
+                thumbnail: "📚💡",
+                videoTranscript: "The main idea is what the story is mostly about. Let's find the main idea together!",
+                practiceProblem: {
+                    question: "What is this story mainly about? (Story about a dog finding a home)",
+                    type: "choice",
+                    options: ["Dogs eating", "A dog finding a home", "Different pets"],
+                    correct: "A dog finding a home",
+                    hint: "Think about what happened most in the story."
+                },
+                resources: ["Reading Comprehension Workbook", "Story Map Template"]
+            }
+        ]
+    }
+};
+
+let currentGrade = null;
+let currentLesson = null;
+let energyPoints = 1250;
+let lessonsCompleted = 0;
+let problemsAttempted = 0;
+let gamesPlayed = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
+    initGradeSelection();
+    initNavigation();
     initVideoPlayer();
     initTabs();
-    initPracticeProblem();
+    initPracticeProblems();
     initModals();
-    initNavigation();
+    updateEnergyDisplay();
 });
 
-/**
- * Video Player Functionality
- * Simulates video playback with interactive timeline
- */
+function initGradeSelection() {
+    const gradeCards = document.querySelectorAll('.grade-card');
+    
+    gradeCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-start') || e.target.closest('.btn-start')) {
+                const grade = this.dataset.grade;
+                selectGrade(grade);
+            }
+        });
+    });
+}
+
+function selectGrade(grade) {
+    currentGrade = grade;
+    const gradeData = curriculumData[grade];
+    
+    // Update UI
+    document.getElementById('gradeSelection').classList.add('hidden');
+    document.getElementById('learningDashboard').classList.remove('hidden');
+    document.getElementById('currentGradeIcon').textContent = gradeData.icon;
+    document.getElementById('currentGradeTitle').textContent = gradeData.name;
+    
+    // Populate subjects
+    populateSubjects(gradeData.subjects);
+    
+    // Update learning paths
+    updateLearningPaths(gradeData.subjects);
+    
+    // Load featured lessons
+    loadFeaturedLessons(gradeData.lessons);
+    
+    // Save progress
+    localStorage.setItem('currentGrade', grade);
+}
+
+function populateSubjects(subjects) {
+    const subjectList = document.getElementById('subjectList');
+    subjectList.innerHTML = '';
+    
+    subjects.forEach(subject => {
+        const li = document.createElement('li');
+        li.className = 'subject-item';
+        li.innerHTML = `
+            <span class="subject-icon">${subject.icon}</span>
+            <span class="subject-name">${subject.name}</span>
+        `;
+        li.addEventListener('click', () => loadSubject(subject));
+        subjectList.appendChild(li);
+    });
+}
+
+function updateLearningPaths(subjects) {
+    subjects.forEach(subject => {
+        const pathCard = document.querySelector(`.path-card[data-subject="${subject.id}"]`);
+        if (pathCard) {
+            pathCard.querySelector('p').textContent = subject.description;
+            pathCard.addEventListener('click', () => loadSubject(subject));
+        }
+    });
+}
+
+function loadSubject(subject) {
+    const gradeData = curriculumData[currentGrade];
+    const subjectLessons = gradeData.lessons.filter(l => l.subject === subject.id);
+    
+    if (subjectLessons.length > 0) {
+        loadLesson(subjectLessons[0]);
+    } else {
+        alert('More lessons coming soon for this subject! 🎉');
+    }
+}
+
+function loadFeaturedLessons(lessons) {
+    const lessonsGrid = document.getElementById('lessonsGrid');
+    lessonsGrid.innerHTML = '';
+    
+    lessons.forEach(lesson => {
+        const lessonCard = document.createElement('div');
+        lessonCard.className = 'lesson-card';
+        lessonCard.innerHTML = `
+            <div class="lesson-thumbnail">${lesson.thumbnail}</div>
+            <h4>${lesson.title}</h4>
+            <div class="lesson-meta">
+                <span class="lesson-duration">⏱️ ${lesson.duration}</span>
+                <span class="lesson-energy">⚡ ${lesson.energy}</span>
+            </div>
+            <button class="btn-start-lesson">Start Lesson</button>
+        `;
+        
+        lessonCard.querySelector('.btn-start-lesson').addEventListener('click', () => {
+            loadLesson(lesson);
+        });
+        
+        lessonsGrid.appendChild(lessonCard);
+    });
+}
+
+function loadLesson(lesson) {
+    currentLesson = lesson;
+    
+    // Hide welcome section, show lesson area
+    document.getElementById('welcomeBackSection').classList.add('hidden');
+    document.getElementById('featuredSection').classList.add('hidden');
+    document.getElementById('gamesSection').classList.add('hidden');
+    document.getElementById('lessonArea').classList.remove('hidden');
+    
+    // Update lesson info
+    document.getElementById('lessonTitle').textContent = lesson.title;
+    document.getElementById('lessonEnergy').textContent = lesson.energy;
+    document.getElementById('lessonDifficulty').textContent = lesson.difficulty;
+    
+    // Set transcript
+    document.getElementById('transcriptText').textContent = lesson.videoTranscript;
+    
+    // Set practice problem
+    setupPracticeProblem(lesson.practiceProblem);
+    
+    // Set resources
+    const resourcesList = document.getElementById('resourcesList');
+    resourcesList.innerHTML = '';
+    lesson.resources.forEach(resource => {
+        const li = document.createElement('li');
+        li.innerHTML = `📄 ${resource}`;
+        resourcesList.appendChild(li);
+    });
+    
+    // Reset video player
+    resetVideoPlayer();
+    
+    // Update progress steps
+    document.getElementById('step1').classList.add('completed');
+    document.getElementById('step2').classList.remove('completed', 'active');
+    document.getElementById('step3').classList.remove('completed', 'active');
+}
+
+function setupPracticeProblem(problem) {
+    const inputArea = document.getElementById('problemInputArea');
+    document.getElementById('problemQuestion').textContent = problem.question;
+    document.getElementById('hintText').textContent = problem.hint;
+    
+    // Hide feedback and next button
+    document.getElementById('problemFeedback').classList.add('hidden');
+    document.getElementById('btnNextProblem').classList.add('hidden');
+    
+    if (problem.type === 'choice') {
+        inputArea.innerHTML = '<div class="choice-options"></div>';
+        const optionsContainer = inputArea.querySelector('.choice-options');
+        
+        problem.options.forEach(option => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-option';
+            btn.textContent = option;
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.choice-option').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                this.dataset.selected = 'true';
+            });
+            optionsContainer.appendChild(btn);
+        });
+    } else if (problem.type === 'input') {
+        inputArea.innerHTML = `
+            <input type="text" class="problem-input" placeholder="Type your answer here..." />
+        `;
+    }
+}
+
+function initPracticeProblems() {
+    document.getElementById('btnCheck').addEventListener('click', checkAnswer);
+    document.getElementById('btnHint').addEventListener('click', showHint);
+    document.getElementById('btnNextProblem').addEventListener('click', nextProblem);
+}
+
+function checkAnswer() {
+    const problem = currentLesson.practiceProblem;
+    let userAnswer = '';
+    
+    if (problem.type === 'choice') {
+        const selected = document.querySelector('.choice-option.selected');
+        if (selected) {
+            userAnswer = selected.textContent;
+        }
+    } else if (problem.type === 'input') {
+        userAnswer = document.querySelector('.problem-input').value.trim();
+    }
+    
+    const feedbackEl = document.getElementById('problemFeedback');
+    const feedbackMsg = document.getElementById('feedbackMessage');
+    
+    if (userAnswer === problem.correct) {
+        feedbackEl.classList.remove('hidden');
+        feedbackEl.className = 'problem-feedback correct';
+        feedbackMsg.textContent = '🎉 Correct! Great job!';
+        document.getElementById('step2').classList.add('completed');
+        
+        // Add energy points
+        energyPoints += 50;
+        updateEnergyDisplay();
+        problemsAttempted++;
+        updateGoalProgress();
+        
+        // Show next button
+        document.getElementById('btnNextProblem').classList.remove('hidden');
+        
+        // Auto-complete lesson after correct answer
+        setTimeout(() => {
+            showCompletionModal();
+        }, 1000);
+    } else {
+        feedbackEl.classList.remove('hidden');
+        feedbackEl.className = 'problem-feedback incorrect';
+        feedbackMsg.textContent = 'Not quite. Try again! 💪';
+    }
+}
+
+function showHint() {
+    document.getElementById('hintBox').classList.remove('hidden');
+}
+
+function nextProblem() {
+    // For demo, just reload same lesson
+    loadLesson(currentLesson);
+}
+
 function initVideoPlayer() {
-    const playButton = document.getElementById('playVideo');
+    const playBtn = document.getElementById('playVideoBtn');
+    const videoControls = document.getElementById('videoControls');
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
     const timelineProgress = document.querySelector('.timeline-progress');
-    const markers = document.querySelectorAll('.marker');
+    
     let isPlaying = false;
     let progress = 0;
     let playInterval;
-
-    if (playButton) {
-        playButton.addEventListener('click', togglePlay);
-    }
-
-    function togglePlay() {
+    
+    playBtn.addEventListener('click', function() {
+        videoPlaceholder.classList.add('hidden');
+        videoControls.classList.remove('hidden');
+        
         isPlaying = !isPlaying;
         
         if (isPlaying) {
-            playButton.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <rect x="6" y="4" width="4" height="16"/>
-                    <rect x="14" y="4" width="4" height="16"/>
-                </svg>
-            `;
+            this.innerHTML = '⏸️';
             startProgress();
         } else {
-            playButton.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
-            `;
+            this.innerHTML = '▶️';
             stopProgress();
         }
-    }
-
+    });
+    
     function startProgress() {
         playInterval = setInterval(() => {
-            progress += 0.5;
+            progress += 1;
             if (progress >= 100) {
                 progress = 100;
                 stopProgress();
                 isPlaying = false;
-                playButton.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                `;
-                // Show completion after video ends
-                setTimeout(() => {
-                    enableNextLesson();
-                }, 500);
+                playBtn.innerHTML = '▶️';
+                
+                // Mark video as watched
+                document.getElementById('step1').classList.add('completed');
             }
             timelineProgress.style.width = progress + '%';
         }, 100);
     }
-
+    
     function stopProgress() {
         clearInterval(playInterval);
     }
-
-    // Make markers clickable to jump to specific sections
-    markers.forEach((marker, index) => {
-        marker.addEventListener('click', () => {
-            const positions = [0, 25, 50, 75];
-            progress = positions[index];
-            timelineProgress.style.width = progress + '%';
-            
-            // Highlight current segment in transcript
-            highlightTranscriptSegment(index);
-        });
-    });
 }
 
-/**
- * Tab System for Transcript/Notes/Resources
- */
-function initTabs() {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = {
-        transcript: document.getElementById('transcript'),
-        notes: document.getElementById('notes'),
-        resources: document.getElementById('resources')
-    };
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            // Add active class to clicked tab
-            tab.classList.add('active');
-            
-            // Hide all content
-            Object.values(tabContents).forEach(content => {
-                if (content) {
-                    content.classList.remove('active');
-                }
-            });
-            
-            // Show selected content
-            const tabName = tab.dataset.tab;
-            if (tabContents[tabName]) {
-                tabContents[tabName].classList.add('active');
-            }
-        });
-    });
-}
-
-/**
- * Interactive Practice Problem with Step-by-Step Guidance
- * Follows scaffolding pedagogy - breaking complex problems into manageable steps
- */
-function initPracticeProblem() {
-    const checkAnswerBtn = document.getElementById('checkAnswer');
-    const feedbackArea = document.getElementById('feedbackArea');
-    const nextStepBtn = document.getElementById('nextStep');
-    const inputField = document.getElementById('step1-answer');
-    const stepNumbers = document.querySelectorAll('.step-number');
+function resetVideoPlayer() {
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const videoControls = document.getElementById('videoControls');
+    const timelineProgress = document.querySelector('.timeline-progress');
     
-    let currentStep = 1;
-    const totalSteps = 3;
-
-    if (checkAnswerBtn) {
-        checkAnswerBtn.addEventListener('click', checkAnswer);
-    }
-
-    if (inputField) {
-        inputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                checkAnswer();
-            }
-        });
-    }
-
-    if (nextStepBtn) {
-        nextStepBtn.addEventListener('click', goToNextStep);
-    }
-
-    function checkAnswer() {
-        const userAnswer = inputField.value.trim().toLowerCase().replace(/\s+/g, '');
-        const correctAnswers = ['4x', '+4x'];
-        
-        if (correctAnswers.includes(userAnswer)) {
-            showFeedback(true);
-        } else {
-            showFeedback(false);
-        }
-    }
-
-    function showFeedback(isCorrect) {
-        feedbackArea.hidden = false;
-        
-        if (isCorrect) {
-            feedbackArea.innerHTML = `
-                <div class="feedback-content correct">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    <div>
-                        <p><strong>Excellent!</strong> When you add 2x + 2x, you get 4x. The +3y and −3y cancel out.</p>
-                        <p style="margin-top: 8px; font-size: 13px;">Now solve: 4x = 18, so x = ?</p>
-                    </div>
-                </div>
-                <button class="btn-secondary" id="nextStep" style="margin-top: 16px;">Continue to Step 2</button>
-            `;
-            
-            // Re-attach event listener to new button
-            document.getElementById('nextStep').addEventListener('click', goToNextStep);
-            
-            // Update step indicator
-            updateStepIndicator(2);
-        } else {
-            feedbackArea.innerHTML = `
-                <div class="feedback-content incorrect">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                    </svg>
-                    <div>
-                        <p><strong>Not quite.</strong> Let's think about this:</p>
-                        <ul style="margin-top: 8px; margin-left: 20px; font-size: 13px;">
-                            <li>Add the x terms: 2x + 2x = ?</li>
-                            <li>Add the y terms: 3y + (−3y) = ?</li>
-                        </ul>
-                        <button class="btn-help" id="showHint" style="margin-top: 12px;">Show me a hint</button>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('showHint').addEventListener('click', () => {
-                openHintModal();
-            });
-        }
-    }
-
-    function goToNextStep() {
-        currentStep++;
-        
-        if (currentStep > totalSteps) {
-            // Lesson complete!
-            showCompletionModal();
-            return;
-        }
-        
-        updateStepIndicator(currentStep);
-        updateProblemContent(currentStep);
-        feedbackArea.hidden = true;
-        inputField.value = '';
-    }
-
-    function updateStepIndicator(step) {
-        stepNumbers.forEach((num, index) => {
-            if (index + 1 <= step) {
-                num.classList.add('active');
-                if (index + 1 < step) {
-                    num.style.background = 'var(--primary-green)';
-                    num.textContent = '✓';
-                }
-            } else {
-                num.classList.remove('active');
-                num.textContent = index + 1;
-            }
-        });
-    }
-
-    function updateProblemContent(step) {
-        const instructionEl = document.querySelector('.step-instruction');
-        const labelEl = document.querySelector('.input-area label');
-        
-        const steps = {
-            2: {
-                instruction: 'Step 2: Solve for x',
-                label: 'If 4x = 18, what is x?',
-                placeholder: 'Enter your answer'
-            },
-            3: {
-                instruction: 'Step 3: Substitute back to find y',
-                label: 'Substitute x into equation (1): 2x + 3y = 13. What is y?',
-                placeholder: 'Enter your answer'
-            }
-        };
-        
-        if (steps[step]) {
-            instructionEl.textContent = steps[step].instruction;
-            labelEl.textContent = steps[step].label;
-            inputField.placeholder = steps[step].placeholder;
-        }
-    }
+    videoPlaceholder.classList.remove('hidden');
+    videoControls.classList.add('hidden');
+    timelineProgress.style.width = '0%';
 }
 
-/**
- * Modal Management
- */
-function initModals() {
-    const hintModal = document.getElementById('hintModal');
-    const closeHintBtn = document.getElementById('closeHint');
-    const gotItBtn = document.getElementById('gotIt');
-    const hintBtn = document.getElementById('hintBtn');
-    const completionModal = document.getElementById('completionModal');
-    const continueLearningBtn = document.getElementById('continueLearning');
-
-    if (hintBtn) {
-        hintBtn.addEventListener('click', openHintModal);
-    }
-
-    if (closeHintBtn) {
-        closeHintBtn.addEventListener('click', () => {
-            hintModal.hidden = true;
+function initTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabId = this.dataset.tab;
+            
+            // Remove active from all
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            
+            // Add active to clicked
+            this.classList.add('active');
+            document.getElementById(`${tabId}Pane`).classList.add('active');
         });
-    }
-
-    if (gotItBtn) {
-        gotItBtn.addEventListener('click', () => {
-            hintModal.hidden = true;
-        });
-    }
-
-    if (continueLearningBtn) {
-        continueLearningBtn.addEventListener('click', () => {
-            completionModal.hidden = true;
-            // In a real app, this would navigate to the next lesson
-            window.location.hash = '#next-lesson';
-        });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === hintModal) {
-            hintModal.hidden = true;
-        }
-        if (e.target === completionModal) {
-            completionModal.hidden = true;
-        }
+    });
+    
+    // Save notes functionality
+    document.getElementById('saveNotesBtn').addEventListener('click', function() {
+        const notes = document.getElementById('notesTextarea').value;
+        localStorage.setItem('lessonNotes', notes);
+        alert('Notes saved! 💾');
     });
 }
 
-function openHintModal() {
-    const hintModal = document.getElementById('hintModal');
-    if (hintModal) {
-        hintModal.hidden = false;
-    }
+function initModals() {
+    const continueBtn = document.getElementById('continueLearningBtn');
+    const closeBtn = document.getElementById('closeCompletionModal');
+    const modal = document.getElementById('completionModal');
+    
+    continueBtn.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        document.getElementById('lessonArea').classList.add('hidden');
+        document.getElementById('welcomeBackSection').classList.remove('hidden');
+        document.getElementById('featuredSection').classList.remove('hidden');
+        document.getElementById('gamesSection').classList.remove('hidden');
+        
+        // Reset for demo
+        resetLessonState();
+        
+        alert('Great progress! In the full version, this would take you to the next lesson. 🚀');
+    });
+    
+    closeBtn.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        document.getElementById('lessonArea').classList.add('hidden');
+        document.getElementById('welcomeBackSection').classList.remove('hidden');
+        document.getElementById('featuredSection').classList.remove('hidden');
+        document.getElementById('gamesSection').classList.remove('hidden');
+        
+        resetLessonState();
+    });
 }
 
 function showCompletionModal() {
-    const completionModal = document.getElementById('completionModal');
-    if (completionModal) {
-        completionModal.hidden = false;
-        
-        // Animate the success circle
-        animateCompletion();
-    }
-}
-
-function animateCompletion() {
-    const progressCircle = document.getElementById('progressCircle');
-    const checkMark = document.getElementById('checkMark');
+    const modal = document.getElementById('completionModal');
+    modal.classList.remove('hidden');
     
-    if (progressCircle) {
-        progressCircle.style.animation = 'none';
-        progressCircle.offsetHeight; // Trigger reflow
-        progressCircle.style.animation = 'drawCircle 1s ease forwards';
-    }
+    // Update energy
+    energyPoints += currentLesson.energy;
+    updateEnergyDisplay();
     
-    if (checkMark) {
-        checkMark.style.animation = 'none';
-        checkMark.offsetHeight; // Trigger reflow
-        checkMark.style.animation = 'drawCheck 0.5s ease 1s forwards';
-    }
+    lessonsCompleted++;
+    updateGoalProgress();
 }
 
-function enableNextLesson() {
-    const nextBtn = document.getElementById('btnNextLesson');
-    if (nextBtn) {
-        nextBtn.disabled = false;
-        nextBtn.style.opacity = '1';
-        nextBtn.style.cursor = 'pointer';
-    }
+function resetLessonState() {
+    // Reset video player
+    resetVideoPlayer();
+    
+    // Clear practice problem
+    document.getElementById('problemInputArea').innerHTML = '';
+    document.getElementById('problemFeedback').classList.add('hidden');
+    document.getElementById('hintBox').classList.add('hidden');
+    
+    // Reset steps
+    document.querySelectorAll('.step').forEach(step => {
+        step.classList.remove('completed', 'active');
+    });
+    document.getElementById('step1').classList.add('completed');
 }
 
-/**
- * Navigation and Breadcrumb functionality
- */
+function updateEnergyDisplay() {
+    document.getElementById('energyCount').textContent = energyPoints.toLocaleString();
+}
+
+function updateGoalProgress() {
+    document.getElementById('goalLessons').textContent = `${Math.min(lessonsCompleted, 5)}/5`;
+    document.getElementById('goalPractice').textContent = `${Math.min(problemsAttempted, 10)}/10`;
+    document.getElementById('goalGames').textContent = `${Math.min(gamesPlayed, 3)}/3`;
+}
+
 function initNavigation() {
-    const lessonLinks = document.querySelectorAll('.lesson-link');
+    // Back to dashboard button
+    document.getElementById('btnBackToDashboard').addEventListener('click', function() {
+        document.getElementById('lessonArea').classList.add('hidden');
+        document.getElementById('welcomeBackSection').classList.remove('hidden');
+        document.getElementById('featuredSection').classList.remove('hidden');
+        document.getElementById('gamesSection').classList.remove('hidden');
+    });
     
-    lessonLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (link.classList.contains('current')) {
-                e.preventDefault();
-                return;
-            }
-            
-            if (link.querySelector('.lock-icon')) {
-                e.preventDefault();
-                alert('Please complete the current lesson first!');
-                return;
-            }
-            
-            // In a real app, this would navigate to the lesson
-            // For demo, just update the UI
-            lessonLinks.forEach(l => l.classList.remove('current'));
-            link.classList.add('current');
-            
-            // Update play icon
-            const icons = link.querySelectorAll('.video-icon, .play-icon');
-            icons.forEach(icon => {
-                icon.classList.remove('video-icon');
-                icon.classList.add('play-icon');
-            });
+    // Game buttons
+    document.querySelectorAll('.btn-play-game').forEach(btn => {
+        btn.addEventListener('click', function() {
+            gamesPlayed++;
+            energyPoints += 75;
+            updateEnergyDisplay();
+            updateGoalProgress();
+            alert('🎮 Game started! Keep playing to earn more energy points!');
         });
     });
-
-    // Unit expansion/collapse
-    const unitBtns = document.querySelectorAll('.unit-btn');
-    unitBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const parentLi = btn.closest('.unit-item');
-            const lessonList = parentLi.querySelector('.lesson-list');
-            
-            if (lessonList) {
-                lessonList.style.display = lessonList.style.display === 'none' ? 'block' : 'none';
-            }
-        });
+    
+    // Parent resources
+    document.querySelector('.btn-parent-resources')?.addEventListener('click', function() {
+        alert('📚 Parent Resources:\n- Learning Progress Report\n- Tips for Supporting Your Child\n- Educational Activities at Home');
+    });
+    
+    // Learning schedule
+    document.querySelector('.btn-learning-schedule')?.addEventListener('click', function() {
+        alert('📅 Recommended Learning Schedule:\n- Math: 15 min/day\n- Reading: 20 min/day\n- Science: 10 min, 3x/week\n- Games: 10 min/day');
+    });
+    
+    // Help buttons
+    document.querySelector('.btn-help')?.addEventListener('click', function() {
+        alert('💬 Ask a Question:\nOur community of teachers and parents is here to help!');
+    });
+    
+    document.querySelector('.btn-community')?.addEventListener('click', function() {
+        alert('👥 Community Forum:\nConnect with other parents and educators!');
     });
 }
-
-/**
- * Helper function to highlight transcript segments based on video position
- */
-function highlightTranscriptSegment(index) {
-    const segments = document.querySelectorAll('.transcript-segment');
-    segments.forEach((segment, i) => {
-        if (i === index) {
-            segment.style.backgroundColor = 'var(--gray-100)';
-            segment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-            segment.style.backgroundColor = '';
-        }
-    });
-}
-
-/**
- * Note-taking functionality with auto-save simulation
- */
-const notesTextarea = document.querySelector('.notes textarea');
-if (notesTextarea) {
-    let saveTimeout;
-    
-    notesTextarea.addEventListener('input', () => {
-        clearTimeout(saveTimeout);
-        saveTimeout = setTimeout(() => {
-            // Simulate auto-save
-            console.log('Note auto-saved:', notesTextarea.value.substring(0, 50) + '...');
-            
-            // Visual feedback
-            const status = document.createElement('span');
-            status.textContent = '✓ Saved';
-            status.style.cssText = 'color: var(--primary-green); font-size: 12px; margin-left: 8px;';
-            
-            const existingStatus = notesTextarea.parentElement.querySelector('span');
-            if (existingStatus) {
-                existingStatus.remove();
-            }
-            
-            notesTextarea.parentElement.appendChild(status);
-            setTimeout(() => status.remove(), 2000);
-        }, 1000);
-    });
-}
-
-/**
- * Accessibility enhancements
- */
-document.addEventListener('keydown', (e) => {
-    // ESC to close modals
-    if (e.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal:not([hidden])');
-        modals.forEach(modal => {
-            modal.hidden = true;
-        });
-    }
-    
-    // Space to play/pause video when focused
-    if (e.key === ' ' && e.target.classList.contains('play-button')) {
-        e.preventDefault();
-        e.target.click();
-    }
-});
-
-/**
- * Progress tracking simulation
- */
-function updateProgress(percentage) {
-    const progressBar = document.querySelector('.progress-fill');
-    if (progressBar) {
-        progressBar.style.width = percentage + '%';
-    }
-    
-    const progressText = document.querySelector('.progress-text');
-    if (progressText) {
-        progressText.textContent = percentage + '% complete';
-    }
-}
-
-/**
- * Energy points animation
- */
-function addEnergyPoints(points) {
-    const energyDisplay = document.querySelector('.energy-points');
-    if (energyDisplay) {
-        const currentPoints = parseInt(energyDisplay.textContent.match(/\d+/)[0]);
-        const newPoints = currentPoints + points;
-        
-        // Animate the counter
-        let displayed = currentPoints;
-        const increment = Math.ceil(points / 20);
-        const interval = setInterval(() => {
-            displayed += increment;
-            if (displayed >= newPoints) {
-                displayed = newPoints;
-                clearInterval(interval);
-            }
-            energyDisplay.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-                ${displayed} energy points
-            `;
-        }, 50);
-    }
-}
-
-// Export functions for potential external use
-window.KhanAcademyModern = {
-    updateProgress,
-    addEnergyPoints,
-    showCompletionModal,
-    openHintModal
-};
-
-console.log('🎓 Khan Academy Modern - Learning Platform Initialized');
-console.log('Following international best practices for lesson delivery:');
-console.log('- Scaffolding: Breaking complex problems into steps');
-console.log('- Immediate feedback on practice problems');
-console.log('- Multiple learning modalities (video, text, interactive)');
-console.log('- Progressive disclosure of information');
-console.log('- Metacognitive support (hints, transcripts, notes)');

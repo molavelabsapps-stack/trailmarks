@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khan Academy - Modern Learning Platform</title>
+    <title>Khan Academy Early Learning - Pre-K, Kindergarten & 1st Grade</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation Header -->
-    <header class="header">
+    <header class="header early-learning-header">
         <div class="header-content">
             <div class="logo">
-                <svg viewBox="0 0 120 40" class="logo-svg">
-                    <text x="0" y="28" class="logo-text">Khan Academy</text>
+                <svg viewBox="0 0 200 50" class="logo-svg">
+                    <circle cx="25" cy="25" r="20" fill="#FFD93D"/>
+                    <circle cx="20" cy="20" r="3" fill="#333"/>
+                    <circle cx="30" cy="20" r="3" fill="#333"/>
+                    <path d="M 20 30 Q 25 35 30 30" stroke="#333" stroke-width="2" fill="none"/>
+                    <text x="55" y="32" class="logo-text" style="font-family: 'Fredoka One', cursive; font-size: 24px; fill: #1865f2;">Khan Academy</text>
+                    <text x="55" y="45" class="logo-subtext" style="font-family: 'Nunito', sans-serif; font-size: 12px; fill: #666;">Early Learning</text>
                 </svg>
             </div>
             <nav class="main-nav">
-                <a href="#" class="nav-link active">Courses</a>
-                <a href="#" class="nav-link">Practice</a>
-                <a href="#" class="nav-link">Videos</a>
-                <a href="#" class="nav-link">Progress</a>
+                <a href="#" class="nav-link active" data-section="home">🏠 Home</a>
+                <a href="#" class="nav-link" data-section="courses">📚 Courses</a>
+                <a href="#" class="nav-link" data-section="games">🎮 Games</a>
+                <a href="#" class="nav-link" data-section="progress">📊 Progress</a>
             </nav>
             <div class="user-menu">
+                <div class="energy-points">
+                    <span class="energy-icon">⚡</span>
+                    <span class="energy-count" id="energyCount">1,250</span>
+                </div>
                 <button class="btn-icon" aria-label="Notifications">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
@@ -33,470 +42,448 @@
                     <span class="notification-badge">3</span>
                 </button>
                 <div class="avatar">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%231865f2'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='18' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E" alt="User avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23FF6B6B'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='18' font-weight='bold'%3E😊%3C/text%3E%3C/svg%3E" alt="User avatar">
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="app-container">
-        <!-- Sidebar - Course Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Current Course</h3>
-                <div class="course-info">
-                    <div class="course-icon math">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 19l8-14 8 14"/>
-                            <path d="M4 12h16"/>
-                        </svg>
-                    </div>
-                    <div class="course-details">
-                        <h4>Algebra I</h4>
-                        <p class="progress-text">65% complete</p>
-                    </div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 65%"></div>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Units</h3>
-                <ul class="unit-list">
-                    <li class="unit-item completed">
-                        <button class="unit-btn">
-                            <span class="check-icon">✓</span>
-                            <span>Linear equations</span>
-                        </button>
-                    </li>
-                    <li class="unit-item active">
-                        <button class="unit-btn">
-                            <span class="unit-number">2</span>
-                            <span>Systems of equations</span>
-                        </button>
-                        <ul class="lesson-list">
-                            <li class="lesson-item completed">
-                                <a href="#" class="lesson-link">
-                                    <span class="video-icon">▶</span>
-                                    Introduction to systems
-                                </a>
-                            </li>
-                            <li class="lesson-item completed">
-                                <a href="#" class="lesson-link">
-                                    <span class="video-icon">▶</span>
-                                    Substitution method
-                                </a>
-                            </li>
-                            <li class="lesson-item active">
-                                <a href="#" class="lesson-link current">
-                                    <span class="play-icon">●</span>
-                                    Elimination method
-                                </a>
-                            </li>
-                            <li class="lesson-item">
-                                <a href="#" class="lesson-link">
-                                    <span class="lock-icon">🔒</span>
-                                    Word problems
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="unit-item">
-                        <button class="unit-btn">
-                            <span class="unit-number">3</span>
-                            <span>Quadratic equations</span>
-                        </button>
-                    </li>
-                    <li class="unit-item">
-                        <button class="unit-btn">
-                            <span class="unit-number">4</span>
-                            <span>Functions</span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Lesson Header -->
-            <div class="lesson-header">
-                <div class="breadcrumb">
-                    <a href="#">Algebra I</a>
-                    <span class="separator">/</span>
-                    <a href="#">Systems of equations</a>
-                    <span class="separator">/</span>
-                    <span class="current">Elimination method</span>
-                </div>
-                <h1 class="lesson-title">Solving systems by elimination</h1>
-                <div class="lesson-meta">
-                    <span class="duration">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                        12 min
-                    </span>
-                    <span class="difficulty">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                        Intermediate
-                    </span>
-                    <span class="energy-points">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                        </svg>
-                        150 energy points
-                    </span>
-                </div>
-            </div>
-
-            <!-- Learning Objectives -->
-            <div class="learning-objectives">
-                <h2 class="objectives-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
+    <div class="app-container early-learning-container">
+        <!-- Grade Selection Section -->
+        <section class="grade-selection" id="gradeSelection">
+            <div class="welcome-banner">
+                <div class="mascot-container">
+                    <svg viewBox="0 0 200 200" class="mascot-svg">
+                        <circle cx="100" cy="100" r="80" fill="#FFD93D"/>
+                        <circle cx="75" cy="85" r="12" fill="#333"/>
+                        <circle cx="125" cy="85" r="12" fill="#333"/>
+                        <circle cx="78" cy="82" r="4" fill="white"/>
+                        <circle cx="128" cy="82" r="4" fill="white"/>
+                        <path d="M 70 120 Q 100 150 130 120" stroke="#333" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <circle cx="60" cy="100" r="15" fill="#FF8E8E" opacity="0.6"/>
+                        <circle cx="140" cy="100" r="15" fill="#FF8E8E" opacity="0.6"/>
+                        <path d="M 40 40 L 50 55 L 35 50 Z" fill="#FFD93D"/>
+                        <path d="M 160 40 L 150 55 L 165 50 Z" fill="#FFD93D"/>
+                        <path d="M 100 20 L 105 35 L 95 35 Z" fill="#FFD93D"/>
                     </svg>
-                    What you'll learn
-                </h2>
-                <ul class="objectives-list">
-                    <li>Understand when to use the elimination method</li>
-                    <li>Solve systems by adding or subtracting equations</li>
-                    <li>Multiply equations to create opposite coefficients</li>
-                    <li>Apply elimination to real-world problems</li>
-                </ul>
+                </div>
+                <h1 class="welcome-title">Welcome to Early Learning! 🌟</h1>
+                <p class="welcome-subtitle">Choose your grade level to start learning</p>
             </div>
-
-            <!-- Video Player Section -->
-            <div class="video-section">
-                <div class="video-player">
-                    <div class="video-container">
-                        <div class="video-placeholder">
-                            <button class="play-button" id="playVideo">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <polygon points="5 3 19 12 5 21 5 3"/>
-                                </svg>
-                            </button>
-                            <p class="video-title">Watch: Solving systems by elimination</p>
-                            <p class="video-instructor">With Sal Khan</p>
+            
+            <div class="grade-cards-container">
+                <div class="grade-card" data-grade="prek">
+                    <div class="grade-icon prek-icon">🌟</div>
+                    <h3 class="grade-title">Pre-K</h3>
+                    <p class="grade-age">Ages 3-4</p>
+                    <ul class="grade-topics">
+                        <li>Counting 1-10</li>
+                        <li>Letters A-Z</li>
+                        <li>Basic Shapes</li>
+                        <li>Colors & Patterns</li>
+                    </ul>
+                    <div class="grade-progress">
+                        <div class="progress-bar-small">
+                            <div class="progress-fill-small" style="width: 0%"></div>
                         </div>
-                        <div class="video-controls">
-                            <div class="timeline">
-                                <div class="timeline-progress" style="width: 0%"></div>
-                                <div class="timeline-markers">
-                                    <span class="marker" style="left: 0%" title="Introduction"></span>
-                                    <span class="marker" style="left: 25%" title="Basic example"></span>
-                                    <span class="marker" style="left: 50%" title="Advanced technique"></span>
-                                    <span class="marker" style="left: 75%" title="Practice problem"></span>
+                        <span class="progress-percent">0% complete</span>
+                    </div>
+                    <button class="btn-start btn-prek">Start Learning!</button>
+                </div>
+
+                <div class="grade-card" data-grade="kindergarten">
+                    <div class="grade-icon kindergarten-icon">🎈</div>
+                    <h3 class="grade-title">Kindergarten</h3>
+                    <p class="grade-age">Ages 5-6</p>
+                    <ul class="grade-topics">
+                        <li>Counting to 100</li>
+                        <li>Reading Simple Words</li>
+                        <li>Addition & Subtraction</li>
+                        <li>Science Basics</li>
+                    </ul>
+                    <div class="grade-progress">
+                        <div class="progress-bar-small">
+                            <div class="progress-fill-small" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-percent">0% complete</span>
+                    </div>
+                    <button class="btn-start btn-kindergarten">Start Learning!</button>
+                </div>
+
+                <div class="grade-card" data-grade="grade1">
+                    <div class="grade-icon grade1-icon">🚀</div>
+                    <h3 class="grade-title">1st Grade</h3>
+                    <p class="grade-age">Ages 6-7</p>
+                    <ul class="grade-topics">
+                        <li>Place Value</li>
+                        <li>Reading Stories</li>
+                        <li>Measurement</li>
+                        <li>World Around Us</li>
+                    </ul>
+                    <div class="grade-progress">
+                        <div class="progress-bar-small">
+                            <div class="progress-fill-small" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-percent">0% complete</span>
+                    </div>
+                    <button class="btn-start btn-grade1">Start Learning!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Dashboard (hidden initially) -->
+        <section class="learning-dashboard hidden" id="learningDashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar early-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Current Grade</h3>
+                    <div class="course-info">
+                        <div class="course-icon" id="currentGradeIcon">🌟</div>
+                        <div class="course-details">
+                            <h4 id="currentGradeTitle">Pre-K</h4>
+                            <p class="progress-text" id="currentGradeProgress">0% complete</p>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Subjects</h3>
+                    <ul class="subject-list" id="subjectList">
+                        <!-- Populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">This Week's Goals</h3>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <span class="goal-icon">📖</span>
+                            <span class="goal-text">Complete 5 lessons</span>
+                            <span class="goal-status" id="goalLessons">0/5</span>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-icon">✏️</span>
+                            <span class="goal-text">Practice problems</span>
+                            <span class="goal-status" id="goalPractice">0/10</span>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-icon">🎮</span>
+                            <span class="goal-text">Play learning games</span>
+                            <span class="goal-status" id="goalGames">0/3</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- Welcome Back Section -->
+                <div class="welcome-back-section" id="welcomeBackSection">
+                    <h2 class="section-title">Good morning! Ready to learn? ☀️</h2>
+                    
+                    <div class="learning-paths">
+                        <div class="path-card math-path" data-subject="math">
+                            <div class="path-icon">🔢</div>
+                            <h3>Math</h3>
+                            <p id="mathPathDescription">Counting and Numbers</p>
+                            <div class="path-progress">
+                                <div class="path-progress-bar">
+                                    <div class="path-progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="path-progress-text">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="path-card reading-path" data-subject="reading">
+                            <div class="path-icon">📚</div>
+                            <h3>Reading & Language</h3>
+                            <p id="readingPathDescription">Letters and Words</p>
+                            <div class="path-progress">
+                                <div class="path-progress-bar">
+                                    <div class="path-progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="path-progress-text">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="path-card science-path" data-subject="science">
+                            <div class="path-icon">🔬</div>
+                            <h3>Science</h3>
+                            <p id="sciencePathDescription">Exploring Our World</p>
+                            <div class="path-progress">
+                                <div class="path-progress-bar">
+                                    <div class="path-progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="path-progress-text">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="path-card social-path" data-subject="social">
+                            <div class="path-icon">🌍</div>
+                            <h3>Social Studies</h3>
+                            <p id="socialPathDescription">Family & Community</p>
+                            <div class="path-progress">
+                                <div class="path-progress-bar">
+                                    <div class="path-progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="path-progress-text">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson Content Area -->
+                <div class="lesson-area hidden" id="lessonArea">
+                    <button class="btn-back" id="btnBackToDashboard">← Back to Dashboard</button>
+                    
+                    <div class="lesson-header">
+                        <h2 class="lesson-title" id="lessonTitle">Loading lesson...</h2>
+                        <div class="lesson-badges">
+                            <span class="badge badge-energy">⚡ <span id="lessonEnergy">100</span> energy</span>
+                            <span class="badge badge-difficulty" id="lessonDifficulty">Beginner</span>
+                        </div>
+                    </div>
+
+                    <div class="lesson-content-grid">
+                        <!-- Video Player -->
+                        <div class="video-section">
+                            <div class="video-player">
+                                <div class="video-placeholder" id="videoPlaceholder">
+                                    <svg viewBox="0 0 400 225" class="video-thumbnail">
+                                        <rect width="400" height="225" fill="#E3F2FD"/>
+                                        <circle cx="200" cy="112" r="40" fill="#1865f2" opacity="0.8"/>
+                                        <polygon points="190,95 190,130 220,112" fill="white"/>
+                                        <text x="200" y="200" text-anchor="middle" fill="#666" font-size="14" font-family="Nunito">Educational Video</text>
+                                    </svg>
+                                    <button class="play-button" id="playVideoBtn">
+                                        <svg viewBox="0 0 24 24" fill="white">
+                                            <polygon points="5,3 19,12 5,21"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="video-controls hidden" id="videoControls">
+                                    <div class="video-timeline">
+                                        <div class="timeline-buffer" style="width: 0%"></div>
+                                        <div class="timeline-progress" style="width: 0%"></div>
+                                        <div class="timeline-markers" id="timelineMarkers"></div>
+                                    </div>
+                                    <div class="controls-row">
+                                        <button class="control-btn" id="playPauseBtn">⏸️</button>
+                                        <span class="time-display"><span id="currentTime">0:00</span> / <span id="duration">3:45</span></span>
+                                        <button class="control-btn" id="muteBtn">🔊</button>
+                                        <button class="control-btn" id="fullscreenBtn">⛶</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="controls-row">
-                                <button class="control-btn" aria-label="Play/Pause">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <polygon points="5 3 19 12 5 21 5 3"/>
-                                    </svg>
-                                </button>
-                                <button class="control-btn" aria-label="Rewind 10s">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 4v6h6"/>
-                                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                                    </svg>
-                                </button>
-                                <button class="control-btn" aria-label="Forward 10s">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M23 4v6h-6"/>
-                                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-                                    </svg>
-                                </button>
-                                <button class="control-btn" aria-label="Settings">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="3"/>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                                    </svg>
-                                </button>
-                                <button class="control-btn fullscreen" aria-label="Fullscreen">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                                    </svg>
-                                </button>
+                            
+                            <!-- Video Tabs -->
+                            <div class="video-tabs">
+                                <button class="tab-btn active" data-tab="transcript">📜 Transcript</button>
+                                <button class="tab-btn" data-tab="notes">📝 My Notes</button>
+                                <button class="tab-btn" data-tab="resources">📎 Resources</button>
+                            </div>
+                            
+                            <div class="tab-content" id="tabContent">
+                                <div class="tab-pane active" id="transcriptPane">
+                                    <p class="transcript-text" id="transcriptText">Loading transcript...</p>
+                                </div>
+                                <div class="tab-pane" id="notesPane">
+                                    <textarea class="notes-textarea" id="notesTextarea" placeholder="Take notes here..."></textarea>
+                                    <button class="btn-save-notes" id="saveNotesBtn">💾 Save Notes</button>
+                                </div>
+                                <div class="tab-pane" id="resourcesPane">
+                                    <ul class="resources-list" id="resourcesList">
+                                        <!-- Populated by JavaScript -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Practice Problems -->
+                        <div class="practice-section">
+                            <div class="practice-card">
+                                <h3 class="practice-title">✏️ Try It Yourself!</h3>
+                                <div class="practice-problem" id="practiceProblem">
+                                    <p class="problem-question" id="problemQuestion">Loading problem...</p>
+                                    <div class="problem-input-area" id="problemInputArea">
+                                        <!-- Dynamic input based on problem type -->
+                                    </div>
+                                    <div class="problem-feedback hidden" id="problemFeedback">
+                                        <p class="feedback-message" id="feedbackMessage"></p>
+                                    </div>
+                                </div>
+                                <div class="practice-actions">
+                                    <button class="btn-hint" id="btnHint">💡 Hint</button>
+                                    <button class="btn-check" id="btnCheck">✓ Check Answer</button>
+                                    <button class="btn-next hidden" id="btnNextProblem">Next Problem →</button>
+                                </div>
+                                <div class="hint-box hidden" id="hintBox">
+                                    <p class="hint-text" id="hintText"></p>
+                                </div>
+                            </div>
+
+                            <!-- Progress in Lesson -->
+                            <div class="lesson-progress-card">
+                                <h4>Lesson Progress</h4>
+                                <div class="lesson-steps">
+                                    <div class="step completed" id="step1">
+                                        <span class="step-icon">✓</span>
+                                        <span class="step-label">Watch Video</span>
+                                    </div>
+                                    <div class="step" id="step2">
+                                        <span class="step-number">2</span>
+                                        <span class="step-label">Practice</span>
+                                    </div>
+                                    <div class="step" id="step3">
+                                        <span class="step-number">3</span>
+                                        <span class="step-label">Quiz</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Video Transcript & Notes -->
-                <div class="transcript-section">
-                    <div class="tabs">
-                        <button class="tab active" data-tab="transcript">Transcript</button>
-                        <button class="tab" data-tab="notes">My Notes</button>
-                        <button class="tab" data-tab="resources">Resources</button>
+                <!-- Featured Lessons -->
+                <div class="featured-section" id="featuredSection">
+                    <h2 class="section-title">Featured Lessons This Week ⭐</h2>
+                    <div class="lessons-grid" id="lessonsGrid">
+                        <!-- Populated by JavaScript -->
                     </div>
-                    <div class="tab-content">
-                        <div class="transcript active" id="transcript">
-                            <div class="transcript-segment">
-                                <span class="timestamp">0:00</span>
-                                <p>Let's learn how to solve systems of equations using the elimination method...</p>
-                            </div>
-                            <div class="transcript-segment">
-                                <span class="timestamp">1:23</span>
-                                <p>When we have two equations, we can add or subtract them to eliminate one variable...</p>
-                            </div>
-                            <div class="transcript-segment">
-                                <span class="timestamp">3:45</span>
-                                <p>Notice how the x terms cancel out when we add these equations together...</p>
-                            </div>
-                            <div class="transcript-segment">
-                                <span class="timestamp">5:12</span>
-                                <p>Sometimes we need to multiply one or both equations first to create opposite coefficients...</p>
-                            </div>
-                        </div>
-                        <div class="notes" id="notes">
-                            <textarea placeholder="Take notes while watching... Your notes will be saved automatically."></textarea>
-                            <button class="btn-primary">Save Note</button>
-                        </div>
-                        <div class="resources" id="resources">
-                            <a href="#" class="resource-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                    <line x1="16" y1="13" x2="8" y2="13"/>
-                                    <line x1="16" y1="17" x2="8" y2="17"/>
-                                    <polyline points="10 9 9 9 8 9"/>
+                </div>
+
+                <!-- Educational Games -->
+                <div class="games-section" id="gamesSection">
+                    <h2 class="section-title">Learning Games 🎮</h2>
+                    <div class="games-grid">
+                        <div class="game-card" data-game="number-match">
+                            <div class="game-thumbnail">
+                                <svg viewBox="0 0 200 150">
+                                    <rect width="200" height="150" fill="#FFE5B4"/>
+                                    <circle cx="50" cy="50" r="25" fill="#FF6B6B"/>
+                                    <circle cx="100" cy="75" r="25" fill="#4ECDC4"/>
+                                    <circle cx="150" cy="50" r="25" fill="#FFE66D"/>
+                                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="20" font-weight="bold">1</text>
+                                    <text x="100" y="80" text-anchor="middle" fill="white" font-size="20" font-weight="bold">2</text>
+                                    <text x="150" y="55" text-anchor="middle" fill="#333" font-size="20" font-weight="bold">3</text>
                                 </svg>
-                                <span>Practice Worksheet (PDF)</span>
-                            </a>
-                            <a href="#" class="resource-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                    <path d="M3 9h18"/>
-                                    <path d="M9 21V9"/>
+                            </div>
+                            <h4>Number Match</h4>
+                            <p>Match numbers with objects!</p>
+                            <button class="btn-play-game">Play Now</button>
+                        </div>
+
+                        <div class="game-card" data-game="letter-puzzle">
+                            <div class="game-thumbnail">
+                                <svg viewBox="0 0 200 150">
+                                    <rect width="200" height="150" fill="#E3F2FD"/>
+                                    <text x="40" y="80" fill="#1865f2" font-size="40" font-weight="bold">A</text>
+                                    <text x="90" y="80" fill="#FF6B6B" font-size="40" font-weight="bold">B</text>
+                                    <text x="140" y="80" fill="#4ECDC4" font-size="40" font-weight="bold">C</text>
                                 </svg>
-                                <span>Formula Reference Sheet</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Practice Section -->
-            <div class="practice-section">
-                <div class="section-header">
-                    <h2>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        Try it yourself
-                    </h2>
-                    <p class="section-subtitle">Apply what you just learned. Get immediate feedback and hints if needed.</p>
-                </div>
-
-                <div class="practice-problem" id="practiceProblem">
-                    <div class="problem-statement">
-                        <p>Solve the system of equations using elimination:</p>
-                        <div class="equation-system">
-                            <div class="equation">
-                                <span class="eq-number">(1)</span>
-                                <span class="eq-content">2x + 3y = 13</span>
                             </div>
-                            <div class="equation">
-                                <span class="eq-number">(2)</span>
-                                <span class="eq-content">2x − 3y = 5</span>
+                            <h4>Letter Puzzle</h4>
+                            <p>Learn the alphabet!</p>
+                            <button class="btn-play-game">Play Now</button>
+                        </div>
+
+                        <div class="game-card" data-game="color-learn">
+                            <div class="game-thumbnail">
+                                <svg viewBox="0 0 200 150">
+                                    <rect width="200" height="150" fill="#FFF5E4"/>
+                                    <circle cx="60" cy="75" r="30" fill="#FF6B6B"/>
+                                    <circle cx="100" cy="75" r="30" fill="#4ECDC4"/>
+                                    <circle cx="140" cy="75" r="30" fill="#FFE66D"/>
+                                </svg>
                             </div>
+                            <h4>Color & Learn</h4>
+                            <p>Discover colors!</p>
+                            <button class="btn-play-game">Play Now</button>
+                        </div>
+
+                        <div class="game-card" data-game="sound-safari">
+                            <div class="game-thumbnail">
+                                <svg viewBox="0 0 200 150">
+                                    <rect width="200" height="150" fill="#E8F5E9"/>
+                                    <text x="50" y="60" font-size="40">🦁</text>
+                                    <text x="100" y="60" font-size="40">🐘</text>
+                                    <text x="150" y="60" font-size="40">🐵</text>
+                                    <text x="100" y="110" text-anchor="middle" fill="#666" font-size="14">Listen & Match</text>
+                                </svg>
+                            </div>
+                            <h4>Sound Safari</h4>
+                            <p>Match animal sounds!</p>
+                            <button class="btn-play-game">Play Now</button>
                         </div>
                     </div>
+                </div>
+            </main>
 
-                    <div class="step-guidance">
-                        <div class="step-indicator">
-                            <span class="step-number active">1</span>
-                            <span class="step-connector"></span>
-                            <span class="step-number">2</span>
-                            <span class="step-connector"></span>
-                            <span class="step-number">3</span>
+            <!-- Right Sidebar - Progress & Support -->
+            <aside class="right-sidebar">
+                <div class="progress-widget">
+                    <h3 class="widget-title">🏆 Your Achievements</h3>
+                    <div class="badges-grid" id="badgesGrid">
+                        <div class="badge-item locked" title="First Steps - Complete your first lesson">
+                            <span class="badge-icon">🌟</span>
+                            <span class="badge-name">First Steps</span>
                         </div>
-                        <p class="step-instruction">Step 1: Add the equations to eliminate y</p>
-                    </div>
-
-                    <div class="input-area">
-                        <label for="step1-answer">What do you get when you add the left sides?</label>
-                        <div class="math-input">
-                            <input type="text" id="step1-answer" placeholder="Enter your answer" autocomplete="off">
-                            <button class="btn-check" id="checkAnswer">Check</button>
+                        <div class="badge-item locked" title="Math Master - Complete 10 math problems">
+                            <span class="badge-icon">🔢</span>
+                            <span class="badge-name">Math Master</span>
+                        </div>
+                        <div class="badge-item locked" title="Reading Rockstar - Read 5 stories">
+                            <span class="badge-icon">📚</span>
+                            <span class="badge-name">Reading Rockstar</span>
+                        </div>
+                        <div class="badge-item locked" title="Science Explorer - Finish science unit">
+                            <span class="badge-icon">🔬</span>
+                            <span class="badge-name">Science Explorer</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="feedback-area" id="feedbackArea" hidden>
-                        <div class="feedback-content correct">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                            <p>Correct! When you add 2x + 2x, you get 4x. The +3y and −3y cancel out.</p>
-                        </div>
-                        <button class="btn-secondary" id="nextStep">Continue</button>
-                    </div>
-
-                    <div class="help-options">
-                        <button class="btn-help" id="hintBtn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            Get a hint
-                        </button>
-                        <button class="btn-help" id="watchAgain">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="1 4 1 10 7 10"/>
-                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                            </svg>
-                            Watch relevant part again
-                        </button>
-                        <button class="btn-report" id="reportProblem">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            Report issue
-                        </button>
+                <div class="parent-widget">
+                    <h3 class="widget-title">👨‍👩‍👧 Parent Corner</h3>
+                    <div class="parent-content">
+                        <p class="parent-tip" id="parentTip">Tip: Encourage your child to explain what they learned today!</p>
+                        <button class="btn-parent-resources">Parent Resources</button>
+                        <button class="btn-learning-schedule">Learning Schedule</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Hint Modal -->
-            <div class="modal" id="hintModal" hidden>
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>💡 Hint</h3>
-                        <button class="modal-close" id="closeHint">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Think about:</strong> What happens when you add terms with opposite signs?</p>
-                        <p>Look at the y-terms: +3y and −3y. When added together, they equal zero!</p>
-                        <p class="hint-partial">Now focus on the x-terms: 2x + 2x = ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn-primary" id="gotIt">Got it!</button>
-                    </div>
+                <div class="help-widget">
+                    <h3 class="widget-title">❓ Need Help?</h3>
+                    <button class="btn-help">💬 Ask a Question</button>
+                    <button class="btn-community">👥 Community Forum</button>
                 </div>
-            </div>
-
-            <!-- Next Lesson Preview -->
-            <div class="next-lesson">
-                <div class="next-lesson-card">
-                    <div class="next-lesson-info">
-                        <span class="next-label">Up next</span>
-                        <h3>Systems of equations word problems</h3>
-                        <p>Apply elimination to solve real-world scenarios involving two unknowns.</p>
-                    </div>
-                    <button class="btn-primary btn-next" disabled id="btnNextLesson">
-                        Continue to next lesson
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                            <polyline points="12 5 19 12 12 19"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </main>
-
-        <!-- Right Panel - Additional Resources -->
-        <aside class="right-panel">
-            <div class="panel-section">
-                <h3 class="panel-title">Need help?</h3>
-                <div class="help-resources">
-                    <a href="#" class="help-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                        <span>Ask for help in community</span>
-                    </a>
-                    <a href="#" class="help-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        </svg>
-                        <span>View discussion forum</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="panel-section">
-                <h3 class="panel-title">Related lessons</h3>
-                <ul class="related-list">
-                    <li>
-                        <a href="#" class="related-link">
-                            <span class="related-icon video">▶</span>
-                            <span>Solving by substitution</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="related-link">
-                            <span class="related-icon video">▶</span>
-                            <span>Graphing systems</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="related-link">
-                            <span class="related-icon practice">✏</span>
-                            <span>Mixed practice</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="panel-section">
-                <h3 class="panel-title">Your progress</h3>
-                <div class="progress-stats">
-                    <div class="stat">
-                        <span class="stat-value">12/20</span>
-                        <span class="stat-label">Problems solved</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">85%</span>
-                        <span class="stat-label">Accuracy</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">450</span>
-                        <span class="stat-label">Energy points</span>
-                    </div>
-                </div>
-            </div>
-        </aside>
+            </aside>
+        </section>
     </div>
 
     <!-- Completion Modal -->
-    <div class="modal completion-modal" id="completionModal" hidden>
-        <div class="modal-content">
-            <div class="completion-animation">
-                <svg viewBox="0 0 100 100" class="success-circle">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="4"/>
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="283" stroke-dashoffset="283" id="progressCircle"/>
-                    <path d="M35 50 L45 60 L65 40" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" id="checkMark"/>
-                </svg>
-            </div>
-            <h2>Lesson Complete! 🎉</h2>
-            <p>Great job mastering the elimination method!</p>
+    <div class="modal hidden" id="completionModal">
+        <div class="modal-content completion-modal">
+            <div class="completion-icon">🎉</div>
+            <h2 class="modal-title">Great Job!</h2>
+            <p class="modal-message">You completed the lesson!</p>
             <div class="rewards">
-                <div class="reward">
+                <div class="reward-item">
                     <span class="reward-icon">⚡</span>
-                    <span class="reward-amount">+150</span>
-                    <span class="reward-label">Energy Points</span>
+                    <span class="reward-amount">+100 Energy Points</span>
                 </div>
-                <div class="reward">
+                <div class="reward-item">
                     <span class="reward-icon">📈</span>
-                    <span class="reward-amount">+5%</span>
-                    <span class="reward-label">Course Progress</span>
+                    <span class="reward-amount">Lesson Complete!</span>
                 </div>
             </div>
-            <button class="btn-primary btn-large" id="continueLearning">Continue Learning</button>
+            <div class="modal-actions">
+                <button class="btn-primary" id="continueLearningBtn">Continue Learning</button>
+                <button class="btn-secondary" id="closeCompletionModal">Back to Dashboard</button>
+            </div>
         </div>
     </div>
 
